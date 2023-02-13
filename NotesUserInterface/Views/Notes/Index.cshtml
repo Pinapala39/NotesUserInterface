@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<a href="" id="showCreateNotes">Create Notes</a>
+<div id="CreateNotesContainer" style="display: none;">
+    <form id="myNote">
+        <label for="title">Title</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="description">Description</label><br>
+        <input type="text" id="desc" name="desc"><br><br>
+        <label for="Content">Content</label><br>
+        <textarea id="content" name="content"></textarea><br /><br />
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<script src="~/Scripts/CreateNotes.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#showCreateNotes').click(function () {
+            event.preventDefault();
+            $('#CreateNotesContainer').show();
+        });
+    });
+      
+</script>
+
+
+
