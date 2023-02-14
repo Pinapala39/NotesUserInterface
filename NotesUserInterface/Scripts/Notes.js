@@ -51,8 +51,7 @@ $(document).ready(function () {
     $('#DeleteNote').submit(function (event) {
         event.preventDefault();
 
-        var id = Math.floor(Math.random() * 1000);
-       
+        var id = $('#Nid').val();     
 
         $.delete('https://localhost:7224/api/DeleteNote/', { NoteId: id })
             .done(function (response) {
