@@ -1,106 +1,182 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="page-header">Notes Application</h2>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<style>
 
-<a href="" id="showCreateNotes">Create Notes</a>
-<br />
+    .page-header {
+        text-align: center;
+        margin: 25px;
+    }
+    #tblGetListofNotes {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-<a href="" id="showNotesList">Get Notes List</a>
+        #tblGetListofNotes td, #tblGetListofNotes th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
 
-<a href="" id="UpdateNotesList">Get Notes List</a>
+        #tblGetListofNotes tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
+        #tblGetListofNotes tr:hover {
+            background-color: #ddd;
+        }
 
-<a href="" id="DeleteNotesList">Get Notes List</a>
+        #tblGetListofNotes th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    div {
+        margin-bottom: 5px;
+    }
 
-@* Get Notes Container *@
+    label {
+        display: inline-block;
+        width: 110px;
+        color: #777777;
+    }
 
-<div id="GetNotesContainer" style="display: none;">
-    <form id="GetNote">
-        <table id="tblGetListofNotes">
-            <tr>
-                Title
-            </tr>
-            <tr>
-                Description
-            </tr>
-            <tr>
-                Content
-            </tr>
-        </table>
-    </form>
-</div>
-
-
-
-@* Create Notes Container *@
-<div id="CreateNotesContainer" style="display: none;">
-    <form id="myNote">
-        <label for="title">Note Name</label><br>
-        <input type="text" id="title" name="NoteName"><br>
-        <label for="description">Note Description</label><br>
-        <textarea id="desc" name="desc"></textarea>
-        <br /> <br />
-        <input type="submit" value="Submit">
-    </form>
-</div>
-
-@* Update Notes Container *@
-
-<div id="UpdateNotesContainer" style="display: none;">
-    <form id="UpdateNote">
-        <label for="title">Note Name</label><br>
-        <input type="text" id="title" name="NoteName"><br>
-        <label for="description">Note Description</label><br>
-        <textarea id="desc" name="desc"></textarea>
-        <br /> <br />
-        <input type="submit" value="Update">
-    </form>
-</div>
-
-@* Delete Notes Container *@
+    input {
+        padding: 5px 10px;
+    }
 
 
-<div id="DeleteNotesContainer" style="display: none;">
-    <form id="DeleteNote">
-        <p> Enter your Note ID</p>
-        <label for="title">Note Id</label><br>
-        <input type="text" id="title" name="NoteName"><br>
+    #hyperlinks {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+  
+</style>
 
-        <br /> <br />
-        <input type="submit" value="Delete">
-    </form>
-</div>
+    <div id="hyperlinks">
+        <a href="@Url.Action("Index","Notes")" id="showCreateNotes">Create Notes</a>
+        <br />
+
+        <a href="@Url.Action("Index","Notes")" id="showNotesList">Get Notes List</a><br />
+
+        <a href="@Url.Action("Index","Notes")" id="UpdateNotesList">Update Notes</a><br />
 
 
-<script src="~/Scripts/Notes.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#showCreateNotes').click(function () {
-            event.preventDefault();
-            $('#CreateNotesContainer').show();
-        });
-        $('#showNotesList').click(function () {
-            event.preventDefault();
-            $('#GetNotesContainer').show();
-        });
-        $('#UpdateNotesList').click(function () {
-            event.preventDefault();
-            $('#UpdateNotesContainer').show();
-        });
+        <a href="@Url.Action("Index","Notes")" id="DeleteNotesList">Delete Notes</a><br /><br /><br />
 
-        $('#DeleteNotesList').click(function () {
-            event.preventDefault();
-            $('#DeleteNotesContainer').show();
-        });        
-        
-    });
+    </div>
 
-</script>
+    <div id="formContainer">
+        <!-- Get Notes Container -->
+        <div id="GetNotesContainer" style="display: none;">
+            <h4> Get List of Notes</h4>
+            <form id="GetNote">
+                <table id="tblGetListofNotes">
+                    <tr>
+                        <th>NoteId</th>
+                        <th>NoteName</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Test
+                        </td>
+                        <td>
+                            First Note
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <!-- Create Notes Container -->
+        <div id="CreateNotesContainer" style="display: none;">
+            <form id="myNote">
+                <h4>Create New Notes</h4>
+                <div>
+                    <label for="title">Note Name</label>
+                    <input type="text" id="title" name="NoteName" autofocus><br />
+                </div>
+                <div>
+                    <label for="description">Note Description</label>
+                    <textarea id="desc" name="desc"></textarea>
+                </div>
+                <input type="submit" value="Submit" />
+            </form>
+            </div>
+                <!-- Update Notes Container -->
+        <div id="UpdateNotesContainer" style="display: none;">
+           
+            <form id="UpdateNote">
+                <h4> Update with NoteId</h4>
+                <label for="title">Note Name</label>
+                <input style="padding-left:5em; " type="text" id="noteName" name="NoteName"><br /> <br />
+                <label for="description">Note Description</label>
+                <textarea id="desc" name="desc"></textarea>
+                <input type="submit" value="Update">
+            </form>
+        </div>
+
+                @* Delete Notes Container *@
+
+
+    <div id="DeleteNotesContainer" style="display: none;">
+        <form id="DeleteNote">
+            <h4 style="align-content:center;"> Enter your Note ID </h4>
+            <label for="title">Note Id</label><br>
+            <input type="text" id="title" name="NoteName"><br>
+
+            <br /> <br />
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+        </div>
+        <script src="~/Scripts/Notes.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#showCreateNotes').click(function () {
+                    event.preventDefault();
+                    $('#GetNotesContainer').hide();
+                    $('#UpdateNotesContainer').hide();
+                    $('#DeleteNotesContainer').hide();
+                    $('#CreateNotesContainer').show();
+                });
+                $('#showNotesList').click(function () {
+                    event.preventDefault();
+                    $('#CreateNotesContainer').hide();
+                    $('#UpdateNotesContainer').hide();
+                    $('#DeleteNotesContainer').hide();
+                    $('#GetNotesContainer').show();
+                });
+                $('#UpdateNotesList').click(function () {
+                    event.preventDefault();
+                    $('#CreateNotesContainer').hide();
+                    $('#GetNotesContainer').hide();
+                    $('#DeleteNotesContainer').hide();
+                    $('#UpdateNotesContainer').show();
+                });
+
+                $('#DeleteNotesList').click(function () {
+                    event.preventDefault();
+                    $('#CreateNotesContainer').hide();
+                    $('#GetNotesContainer').hide();
+                    $('#UpdateNotesContainer').hide();
+                    $('#DeleteNotesContainer').show();
+                });
+
+            });
+
+        </script>
 
 
 
