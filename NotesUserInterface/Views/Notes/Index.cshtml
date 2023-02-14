@@ -8,27 +8,98 @@
 
 
 <a href="" id="showCreateNotes">Create Notes</a>
+<br />
+
+<a href="" id="showNotesList">Get Notes List</a>
+
+<a href="" id="UpdateNotesList">Get Notes List</a>
+
+
+<a href="" id="DeleteNotesList">Get Notes List</a>
+
+@* Get Notes Container *@
+
+<div id="GetNotesContainer" style="display: none;">
+    <form id="GetNote">
+        <table id="tblGetListofNotes">
+            <tr>
+                Title
+            </tr>
+            <tr>
+                Description
+            </tr>
+            <tr>
+                Content
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+
+@* Create Notes Container *@
 <div id="CreateNotesContainer" style="display: none;">
     <form id="myNote">
-        <label for="title">Title</label><br>
-        <input type="text" id="title" name="title"><br>
-        <label for="description">Description</label><br>
-        <input type="text" id="desc" name="desc"><br><br>
-        <label for="Content">Content</label><br>
-        <textarea id="content" name="content"></textarea><br /><br />
+        <label for="title">Note Name</label><br>
+        <input type="text" id="title" name="NoteName"><br>
+        <label for="description">Note Description</label><br>
+        <textarea id="desc" name="desc"></textarea>
+        <br /> <br />
         <input type="submit" value="Submit">
     </form>
 </div>
 
-<script src="~/Scripts/CreateNotes.js"></script>
+@* Update Notes Container *@
+
+<div id="UpdateNotesContainer" style="display: none;">
+    <form id="UpdateNote">
+        <label for="title">Note Name</label><br>
+        <input type="text" id="title" name="NoteName"><br>
+        <label for="description">Note Description</label><br>
+        <textarea id="desc" name="desc"></textarea>
+        <br /> <br />
+        <input type="submit" value="Update">
+    </form>
+</div>
+
+@* Delete Notes Container *@
+
+
+<div id="DeleteNotesContainer" style="display: none;">
+    <form id="DeleteNote">
+        <p> Enter your Note ID</p>
+        <label for="title">Note Id</label><br>
+        <input type="text" id="title" name="NoteName"><br>
+
+        <br /> <br />
+        <input type="submit" value="Delete">
+    </form>
+</div>
+
+
+<script src="~/Scripts/Notes.js"></script>
 <script>
     $(document).ready(function () {
         $('#showCreateNotes').click(function () {
             event.preventDefault();
             $('#CreateNotesContainer').show();
         });
+        $('#showNotesList').click(function () {
+            event.preventDefault();
+            $('#GetNotesContainer').show();
+        });
+        $('#UpdateNotesList').click(function () {
+            event.preventDefault();
+            $('#UpdateNotesContainer').show();
+        });
+
+        $('#DeleteNotesList').click(function () {
+            event.preventDefault();
+            $('#DeleteNotesContainer').show();
+        });        
+        
     });
-      
+
 </script>
 
 

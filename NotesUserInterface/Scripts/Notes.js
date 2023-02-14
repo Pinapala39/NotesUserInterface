@@ -10,7 +10,6 @@
         $.post('https://localhost:7224/api/CreateNotes', { id: id, title: title, desc: desc, content: content })
             .done(function (response) {
                 console.log(response);
-            })
-            
+            })            
     });
 });
